@@ -23,11 +23,7 @@ router.post('/', [
 	body('nameOnTransaction').notEmpty().withMessage('Name on Transaction is required').bail().isString().withMessage('Name on Transaction  is not valid'),
 	body('senderPhone').notEmpty().withMessage('sender Phone is required').bail().isString().withMessage('sender Phone  is not valid'),
 	body('amount').notEmpty().withMessage('amount is required').bail().isNumeric().withMessage('amount  is not valid'),
-<<<<<<< HEAD
 	body('image').notEmpty().withMessage('Image is required')
-=======
-	body('image')
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 ], function (request, response, next) {
 	const errors = validationResult(request)
 	if (!errors.isEmpty()) {

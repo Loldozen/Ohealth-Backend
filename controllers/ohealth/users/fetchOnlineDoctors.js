@@ -25,11 +25,7 @@ router.post('/', [
 	let finder = { $and: [{ verified: true }, { $or: [{ available: true }, { available: null }] }] }
 	if (specialist) {
 		// finder.specialist = specialist
-<<<<<<< HEAD
 		finder = { $and: [{ verified: true }, { $or: [{ available: true }, { available: null }] }, { $or: [{ specialization: { $regex: specialist, $options: 'i' } }, { name: { $regex: specialist, $options: 'i' } }] }] }
-=======
-		finder = { $and: [{ verified: true }, { $or: [{ available: true }, { available: null }] }, { $or: [{ specialization: { $regex: '^' + specialist + '$', $options: 'i' } }, { name: { $regex: specialist, $options: 'i' } }] }] }
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 	}
 
 

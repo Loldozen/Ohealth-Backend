@@ -45,11 +45,7 @@ const editor = async (username) => {
 			}
 
 		}
-<<<<<<< HEAD
 		let chan = await User.findOneAndUpdate({ _id: min._id }, { username: min.username + '1' }, { new: true })
-=======
-		let chan = await User.findOneAndUpdate({ _id: min._id }, { username: min.username + '3' }, { new: true })
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 		console.log(chan.username)
 		return true
 	}

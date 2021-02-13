@@ -5,16 +5,11 @@ BodyParser = require('body-parser')
 var bodyParser = BodyParser.json({ limit: '50mb' })
 var bodyParser2 = BodyParser.urlencoded({ extended: true })
 const mongoose = require('mongoose')
-<<<<<<< HEAD
 const cors = require('cors')
 
 const socket = require('./socket/sockets')
 app.set('view engine', 'ejs');
 // app.set('view engine', 'pug');
-=======
-const socket = require('./socket/sockets')
-app.set('view engine', 'pug');
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 // mongoose.connect('mongodb://localhost/ohealth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
 mongoose.connect('mongodb+srv://mnuser:OnlineHealth-Pass48776@ohealth.dynnz.mongodb.net/ohealth?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
@@ -22,7 +17,6 @@ mongoose.connect('mongodb+srv://mnuser:OnlineHealth-Pass48776@ohealth.dynnz.mong
 
 mongoose.Promise = global.Promise
 
-<<<<<<< HEAD
 // //Step 1
 // const Core = require('@alicloud/pop-core');
 
@@ -85,16 +79,6 @@ app.use(session({
 app.use(cors())
 app.use(express.static(__dirname)) //make public folder accessible publicly
 
-=======
-app.use(bodyParser)
-app.use(bodyParser2)
-app.use(cookieParser('Lekxel4real@$%', {
-	maxAge: 1000 * 60 * 15, // would expire after 15 minutes
-	httpOnly: true, // The cookie only accessible by the web server
-	signed: true // Indicates if the cookie should be signed
-}))
-
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 /////////////// oDoctor /////////////////
 app.use('/odoctor/register', require('./controllers/odoctor/auth/register'))
 app.use('/odoctor/login', require('./controllers/odoctor/auth/login'))
@@ -120,18 +104,11 @@ app.use('/odoctor/deleteNotification', require('./controllers/odoctor/doctors/de
 app.use('/odoctor/setAvailability', require('./controllers/odoctor/doctors/setAvailability'))
 app.use('/odoctor/deleteAppointment', require('./controllers/odoctor/doctors/deleteAppointment'))
 app.use('/odoctor/clearAppointments', require('./controllers/odoctor/doctors/clearAppointments'))
-<<<<<<< HEAD
     // app.use('/odoctor/re', require('./controllers/odoctor/doctors/removeSocket'))
 
 
 ///////////////// oHealth /////////////////////////////
 // app.use('/', require('./controllers/ohealth/home/front'))
-=======
-// app.use('/odoctor/re', require('./controllers/odoctor/doctors/removeSocket'))
-
-
-///////////////// oHealth /////////////////////////////
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 app.use('/ohealth/register', require('./controllers/ohealth/auth/register'))
 app.use('/ohealth/login', require('./controllers/ohealth/auth/login'))
 app.use('/ohealth/recover', require('./controllers/ohealth/auth/recover'))
@@ -174,21 +151,14 @@ app.use('/admin/admin', require('./controllers/admin/admin'))
 app.use('/admin/fundUser', require('./controllers/admin/fundUser'))
 app.use('/admin/messageUser', require('./controllers/admin/messageUser'))
 app.use('/admin/messageDoctor', require('./controllers/admin/messageDoctor'))
-<<<<<<< HEAD
 app.use('/admin/confirmBankTransfers', require('./controllers/admin/confirmBankTransfers'))
 app.use('/admin/laboratories', require('./controllers/admin/laboratories'))
 app.use('/admin/laboratory', require('./controllers/admin/laboratory'))
 
-=======
-app.use('/admin/messageAllUsers', require('./controllers/admin/messageAllUsers'))
-app.use('/admin/messageAllDoctors', require('./controllers/admin/messageAllDoctors'))
-app.use('/admin/confirmBankTransfers', require('./controllers/admin/confirmBankTransfers'))
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 
 app.use('/ohealth/fetchDuplicates', require('./controllers/ohealth/fetchDuplicates'))
 app.use('/ohealth/editDuplicates', require('./controllers/ohealth/editDuplicates'))
 
-<<<<<<< HEAD
 
 ////////////////////////////////////////////////////////////
 // all services display
@@ -287,21 +257,3 @@ var server = app.listen(process.env.PORT || 7000, function() {
     })
     // Call the Socket
 socket.openSocket(server)
-=======
-//Handle Error
-app.use(function (error, request, response, next) {
-	response.status(422).send({ error: error.message })
-})
-
-app.use('*', express.Router().all('/', function (request, response, next) {
-
-	return response.render('404', { pagetitle: '404 Error' })
-}))
-
-
-var server = app.listen(process.env.PORT || 7000, function () {
-	console.log('Server is Online')
-})
-// Call the Socket
-socket.openSocket(server)
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca

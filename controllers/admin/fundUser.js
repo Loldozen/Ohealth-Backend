@@ -69,19 +69,11 @@ router.post('/', [
 				if ((decoded.email == adminEmail) && adminEx) {
 					if (adminEx && adminEx > 1) {
 						//does the user even exist?
-<<<<<<< HEAD
 						let theUser = await User.findOne({ username: { $regex: user, $options: 'i' } })
 						if (!theUser) {
 							return res.render('fundUser', { pagetitle: 'oHealth - Fund User', adminPriviledge: adminEx, error: 'User does not exist' });
 						}
 						let fundTheUser = await User.findOneAndUpdate({ username: { $regex: user, $options: 'i' } }, { wallet: (parseFloat(theUser.wallet) + parseFloat(amount)).toFixed(2) })
-=======
-						let theUser = await User.findOne({ username: { $regex: '^' + user.toLowerCase() + '$', $options: 'i' } })
-						if (!theUser) {
-							return res.render('fundUser', { pagetitle: 'oHealth - Fund User', adminPriviledge: adminEx, error: 'User does not exist' });
-						}
-						let fundTheUser = await User.findOneAndUpdate({ username: { $regex: '^' + user.toLowerCase() + '$', $options: 'i' } }, { wallet: (parseFloat(theUser.wallet) + parseFloat(amount)).toFixed(2) })
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 						let adminLog = await updateAdminLog(decoded.email, user, amount)
 						return res.render('fundUser', { pagetitle: 'oHealth - Fund User', adminPriviledge: adminEx, success: `${theUser.name} has been funded with ${amount}NGN` });
 					}

@@ -22,7 +22,6 @@ router.post('/', [
 		return response.status(422).send({ error: errors.array() })
 	}
 	let { email, phoneNumber, password, name, username, gender, DOB, bloodGroup, genotype, height, weight, } = request.body
-<<<<<<< HEAD
 	let newUser = {
 		email: email, phoneNumber, name, gender, username: username.toLowerCase(), DOB, bloodGroup, genotype, height, weight, uniqueID: UniqueValue(100).substr(0, 6)
 	}
@@ -35,32 +34,6 @@ router.post('/', [
 	})
 })
 
-=======
-
-
-	User.findOne({ username: { $regex: '^' + username.toLowerCase() + '$', $options: 'i' } }, function (err, user) {
-		if (user) {
-			return response.status(400).json({ error: "Username already exist" })
-		}
-
-
-		let newUser = {
-			email: email, phoneNumber, name, gender, username: username.toLowerCase(), DOB, bloodGroup, genotype, height, weight, uniqueID: UniqueValue(100).substr(0, 6)
-		}
-
-
-
-		bcrypt.hash(password, 10, function (err, hash) {
-			newUser.password = hash,
-				User.create(newUser).then(function (user) {
-					return response.send({ success: true })
-				}).catch(next)
-		})
-	}).catch(next)
-})
-
-
->>>>>>> 14af74daf7eacb7d2e09e995ff242bbafbfb86ca
 module.exports = router
 
 const UniqueValue = d => {

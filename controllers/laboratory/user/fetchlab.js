@@ -19,7 +19,7 @@ router.get('/', function (request, response) {
 
 	
 	// let finder = { last_login: { $gt: tim } }
-	let finder = { $and: [{ verified: true }, { city: { $ne:null } }, { country: { $ne:null } }, { state: { $ne:null } }, { capacityPerDay : { $ne:null } }, { testCost : { $ne:null } }, { street : { $ne:null } }] }
+	// let finder = { $and: [{ verified: true }, { city: { $ne:null } }, { country: { $ne:null } }, { state: { $ne:null } }, { capacityPerDay : { $ne:null } }, { testCost : { $ne:null } }, { street : { $ne:null } }] }
 
 	let labss = [];
 	Laboratory.find({}, function(err, labs) {
@@ -34,12 +34,11 @@ router.get('/', function (request, response) {
 		});
 		if (!labss || labss.length < 1) {
 				// return response.status(400).json({ error: "Something went wrong, please contact the customer care" })
-				return response.send({ labs:[], success: true,})
+				return response.send({ labs:[], success: true})
 			}
 	
 			return response.send({ labs: labss, success: true })
 		 });
-		
+})
 
 module.exports = router
-
