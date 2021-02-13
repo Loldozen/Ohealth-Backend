@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/covidtest.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.hospital-signup {
+  background-color: #fff;
+  /* position: absolute;
+  width: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  margin: 5% auto;
+  max-width: 40%;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px 0;
+  padding: 20px;
+}
+.hospital-btn {
+  background-color: rgb(39, 35, 35);
+  border: 1px solid;
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: #fff;
+  text-align: center;
+  width: 30%;
+  align-content: center;
+  margin: 20px 0;
+}
+@media only screen and (max-width: 945px) {
+  .hospital-signup {
+    max-width: 60%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .hospital-signup {
+    max-width: 80%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .hospital-btn {
+    width: 50%;
+  }
+}
+.errormsg {
+    background-color: rgba(255, 101, 101, 0.7);
+    text-align: center;
+    padding: 6px;
+    margin: 16px 0px 16px 0px;
+    border-radius: 10px
+}
+.form-container h3{
+  margin-top: 10%;
+  padding: 2rem;
+  text-align: center;
+}
+.ohealthLogo{
+  width: 20%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

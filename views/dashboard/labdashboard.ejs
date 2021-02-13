@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+            integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+            crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="/public/css/bootstrap-grid.css">
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/css/dashboard.css">
+        <link rel=icon href="/public/images/favicon.png" sizes="16x16" type="image/png">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Dashboard</title>
+    </head>
+
+    <body>
+       
+        <input type="checkbox" id="sidebar-toggle">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3 class="brand">
+                    <!-- <span class="logo"></span> -->
+                    <span>OHealth</span>
+                </h3>
+                <label for="sidebar-toggle" class="fa fa-bars"></label>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="active">
+                        <a href="/laboratory/dashboard">
+                            <i class="fa fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/laboratory/profile">
+                            <i class="fa fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/laboratory/login/logout">
+                            <i class="fa fa-sign-out-alt"></i>
+                            <span>Sign out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <header>
+                <h5>OVERVIEW</h5>
+                <!-- <div class="search-wrapper">
+                <span class="fa fa-search"></span>
+                <input type="search" placeholder="Search" >
+            </div>--> 
+            <% if(state == "Unverified"){%>
+                    <div class="statemsg" style="background-color: rgb(233, 156, 156); padding: 5px;">
+                            Unverified
+                    </div>
+                    <%} else{%>
+                        <div class="statemsg" style="background-color: rgb(153, 209, 160); padding: 5px;">
+                            Verified
+                    </div>
+                    <% } %>
+                    <button class="btn btn-dark" style="padding: 4px; font-size: 13px;" onclick="location.reload()">Update dashboard</button>
+            <div class="social-icon">
+               
+                <span></span>
+                <span></span>
+            </div> 
+            </header>
+            <main>
+                <% if(error != ""){%>
+                    <div class="errormsg">
+                        <% for(var i=0; i < error.length; i++) {%>
+                        <div>
+                            <%=error[i].msg%>
+                        </div>
+                        <% } %>
+                    </div>
+                    <%} else{%>
+                    <% } %>
+                    <% if(success != ""){%>
+                        <div class="successmsg">
+                            <% for(var i=0; i < success.length; i++) {%>
+                            <div>
+                                <%=success[i].msg%>
+                            </div>
+                            <% } %>
+                        </div>
+                        <%} else{%>
+                        <% } %>
+                        <center><div>
+                                    <% if(!user.city || user.city.length == 0 || !user.country || user.country.length == 0 || !user.state || user.state.length == 0 || !user.capacityPerDay || user.capacityPerDay.length == 0 || !user.testCost || user.testCost.length == 0 || !user.name || user.name.length == 0 || !user.street || user.street.length == 0 || !user.phoneNumber || user.phoneNumber.length == 0 || !user.email || user.email.length == 0) {%>
+                                        <div style="background-color: rgb(214, 148, 148); padding: 4px;">Update your profile to be visible to users</div>
+                                    <% } %>   
+                                </div></center>
+                <div class="dash-cards">
+                    <div class="card-single">
+                        <div class="card-body">
+                                
+                            <span></span>
+                            <div>
+                                <h5>Account Balance</h5>
+                                <h6>&#8358 <script>document.write(Math.round('<%-(user.wallet)%>'))</script></h6>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <!-- <a href="">view all</a> -->
+                            <p></p>
+                        </div>
+                    </div>
+                        <div class="card-single">
+                            <div class="card-body">
+                                <span></span>
+                                <div>
+                                    <h5>Successful Tests</h5>
+                                    <h6><span id="count">0</span> Test</h6>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <!-- <a href="finddoctor.html">view all</a> -->
+                                <p></p>
+                            </div>
+                        </div>
+                     <div class="card-single">
+                        <div class="card-body">
+                            <span></span>
+                            <div>
+                                <h5>Total Tests</h5>
+                                <h6><%=(bookings).length%> Tests</h6>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <!-- <a href="appointment.html">view all</a> -->
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="recent space-up">
+                    <div class="activity-grid">
+                        <div class="activity-card">
+                            <h3>Tests Booked</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>User's Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Gender</th>
+                                            <th>Booked Date</th>
+                                            <th>Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if((bookings).length >= 1){%>
+                                        <% for(var i = 0; i < (bookings).length; i++) {%>
+                                        <tr>
+                                            <td> <%=(bookings)[i].name%> </td>
+                                            <td><a href="tel:<%=(bookings)[i].phoneNumber%>"><%=(bookings)[i].phoneNumber%></a>  </td>
+                                            <td><a href="mailto:<%=(bookings)[i].email%>"><%=(bookings)[i].email%></a></td>
+                                            <td><%=(bookings)[i].gender%></td>
+                                            <td><%=(bookings)[i].bookedDate%></td>
+                                            <% if(bookings[i].status == true){%>
+                                                
+                                            <td><form method="POST" action="http://ohealth-lab.herokuapp.com/laboratory/testStatus"><input type="checkbox" checked="checked" class="status" name='status' onclick="add('<%=(bookings)[i].userID%>', '<%=(bookings)[i].labID%>','<%=(bookings)[i].bookedDate%>')">
+                                                </td>
+                                            
+                                            </form>
+                                            <%}else {%>
+                                            <td><form method="POST" accept="http://ohealth-lab.herokuapp.com/laboratory/testStatus"><input type="checkbox" class="status" name='status' onclick="add('<%=(bookings)[i].userID%>', '<%=(bookings)[i].labID%>','<%=(bookings)[i].bookedDate%>')"></td></form>
+                                            <%}%>
+                                        </tr>
+                                        <%}%>
+                                        <%}%>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="summary">
+                            <div class="summary-card">
+                                <div class="summary-single">
+                                    <span></span>
+                                    <div>
+                                        <h5><%=(bookings).length%></h5>
+                                        <small>Total Tests</small>
+                                    </div>
+                                </div>
+                                <!-- <div class="summary-single">
+                                    <span></span>
+                                    <div>
+                                        <h5>25</h5>
+                                        <small>Cancelled Tests</small>
+                                    </div>
+                                </div> -->
+                                <div class="summary-single">
+                                    <span></span>
+                                    <div>
+                                        <h5 id="count2">0</h5>
+                                        <small>Successful Tests</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bday-card">
+                                <% if(error != ""){%>
+                                    <div class="errormsg">
+                                        <% for(var i=0; i < error.length; i++) {%>
+                                        <div>
+                                            <%=error[i].msg%>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                    <%} else{%>
+                                    <% } %>
+                                    <% if(success != ""){%>
+                                        <div class="successmsg">
+                                            <% for(var i=0; i < success.length; i++) {%>
+                                            <div>
+                                                <%=success[i].msg%>
+                                            </div>
+                                            <% } %>
+                                        </div>
+                                        <%} else{%>
+                                        <% } %>
+                                <div class="bday-flex">
+                                    <div>
+                                        <img src='<%= user.avatar ? user.avatar : "/public/images/microscope.png" %>'
+                                            alt="" class="bday-img">
+                                    </div>
+                                    <div class="bday-info">
+                                        <h5><%=user.name%></h5>
+                                        <strong>&#8358 <script>document.write(Math.round('<%-(user.wallet)%>'))</script></strong>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <form method="POST" action="http://www.onlinehealthng.com/laboratory/addTransaction">
+                                        <button id="withdraw" >
+                                           Withdraw
+                                        </button>
+                                    </form>
+                                        
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <script>
+            
+            let count = 0
+            const checked = JSON.parse('<%-JSON.stringify(bookings)%>');
+
+            // var d = checked.sort((a,b)=>{
+            //     return a.bookedDate - b.bookedDate
+            // })
+            // console.log(d);
+
+            checked.forEach(element => {
+                if(element.status == true){
+                    count++
+                }
+              document.getElementById('count').innerHTML = count
+              document.getElementById('count2').innerHTML = count
+            });
+            
+            function add(userID, labID, bookedDate){  
+                var form = {
+                    userID: userID,
+                    labID: labID,
+                    bookedDate: bookedDate,
+                }
+                // console.log(form)
+                $.ajax({
+                        type: "POST",
+                        url: "http://www.onlinehealthng.com/laboratory/testStatus",
+                        data: form,
+                        success: function () {
+                            // Display message back to the user here
+                        }
+                        });
+                    
+                }
+
+                function withdraw(){  
+                $.ajax({
+                        type: "POST",
+                        url: "http://www.onlinehealthng.com/laboratory/addTransaction",
+                        // data: form,
+                        success: function () {
+                            // Display message back to the user here
+                        }
+                        });
+                    location.reload()
+                }
+            </script>
+       
+    </body>
+
+</html>

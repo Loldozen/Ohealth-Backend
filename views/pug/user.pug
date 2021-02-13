@@ -1,0 +1,148 @@
+include includes/nav.pug
+.content-wrapper
+	.container-fluid
+		// Breadcrumbs
+		ol.breadcrumb
+			li.breadcrumb-item
+				a(href='/admin/dashboard') Dashboard
+			li.breadcrumb-item.active Manage User
+				if user
+					.card.mt-5(style='width:400px')
+						if user.photo
+							img.card-img-top(src=user.photo||'', alt='user image', style='width:100%;height:300px')
+						.card-body
+							h4.card-title=user.name + ' ('
+								span=user.online?'Online)':'Offline)'
+							p.card-text.lead
+								b.mr-4 Messages Appointment:
+								span.text-success=appointment.messages
+							p.card-text.lead
+								b.mr-4 Video Calls Appointment:
+								span.text-success=appointment.video
+							p.card-text.lead.mb-5
+								b.mr-4 Audio Calls Appointment:
+								span.text-success=appointment.audio
+							p.card-text.lead
+								b.mr-4 Email:
+								span=user.email
+							p.card-text.lead
+								b.mr-4 Phone Number:
+								span=user.phoneNumber
+							p.card-text.lead
+								b.mr-4 Gender:
+								span=user.gender
+							p.card-text.lead
+								b.mr-4 Username:
+								span=user.username
+							p.card-text.lead
+								b.mr-4 Date of Birth:
+								span=new Date(user.DOB)
+							//- p.card-text.lead
+							//- 	b.mr-4 Specialization:
+							//- 	span=user.specialization
+							p.card-text.lead
+								b.mr-4 Country:
+								span=user.country
+							p.card-text.lead
+								b.mr-4 State:
+								span=user.state
+							p.card-text.lead
+								b.mr-4 Address:
+								span=user.address
+							p.card-text.lead
+								b.mr-4 Wallet:
+								span='#' + user.wallet
+							p.card-text.lead
+								b.mr-4 Verified:
+								span=user.verified?'Verified':'Unverified'
+							if (adminPriviledge && adminPriviledge >1)
+								a.btn.btn-primary(data-toggle='modal', data-target='#verify') Change Verification Status
+					br
+		// <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+		// /.container-fluid
+		// /.content-wrapper
+		footer.sticky-footer
+			.container
+				.text-center
+					small Copyright © oHealth 2020
+		// Scroll to Top Button
+		a.scroll-to-top.rounded(href='#page-top')
+			i.fa.fa-angle-up
+		// Logout Modal
+		#logOut.modal.fade(tabindex='-1', role='dialog', aria-labelledby='logOutLabel', aria-hidden='true')
+			.modal-dialog(role='document')
+				.modal-content
+					.modal-header
+						h5#logOutLabel.modal-title Ready to Leave?
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') ×
+					.modal-body Select "Logout" below if you are ready to end your current session.
+					.modal-footer
+						button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+						a.btn.btn-primary(href='/admin/login/logout') Logout
+		
+		//verify modal
+		#verify.modal.fade(tabindex='-1', role='dialog', aria-labelledby='verifyLabel', aria-hidden='true')
+			.modal-dialog(role='document')
+				.modal-content
+					.modal-header
+						h5#verifyLabel.modal-title Change User's verification status
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') ×
+					.modal-body Click on the button below to continue
+					.modal-footer
+						button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+						a.btn.btn-primary(href=`/admin/user/verify/${user._id}`)=user.verified?'Unverify':'Verify'
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
+		script(src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap4.js')
+		script.
+			$(document).ready(function() {
+			$('#dataTable').DataTable();
+			});
+			(function($) {
+			"use strict"; // Start of use strict
+			// Configure tooltips for collapsed side navigation
+			$('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+			template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+			})
+			// Toggle the side navigation
+			$("#sidenavToggler").click(function(e) {
+			e.preventDefault();
+			$("body").toggleClass("sidenav-toggled");
+			$(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+			$(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+			});
+			// Force the toggled class to be removed when a collapsible nav link is clicked
+			$(".navbar-sidenav .nav-link-collapse").click(function(e) {
+			e.preventDefault();
+			$("body").removeClass("sidenav-toggled");
+			});
+			// Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+			$('body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse').on('mousewheel DOMMouseScroll', function(e) {
+			var e0 = e.originalEvent,
+			delta = e0.wheelDelta || -e0.detail;
+			this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+			e.preventDefault();
+			});
+			// Scroll to top button appear
+			$(document).scroll(function() {
+			var scrollDistance = $(this).scrollTop();
+			if (scrollDistance > 100) {
+			$('.scroll-to-top').fadeIn();
+			} else {
+			$('.scroll-to-top').fadeOut();
+			}
+			});
+			// Configure tooltips globally
+			$('[data-toggle="tooltip"]').tooltip()
+			// Smooth scrolling using jQuery easing
+			$(document).on('click', 'a.scroll-to-top', function(event) {
+			var $anchor = $(this);
+			$('html, body').stop().animate({
+			scrollTop: ($($anchor.attr('href')).offset().top)
+			}, 1000, 'easeInOutExpo');
+			event.preventDefault();
+			});
+			})(jQuery); // End of use strict

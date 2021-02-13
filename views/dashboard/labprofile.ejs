@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+            integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+            crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="/public/css/bootstrap-grid.css">
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/css/dashboard.css">
+        <link rel=icon href="/public/images/favicon.png" sizes="16x16" type="image/png">
+
+        <title>Laboratory profile</title>
+    </head>
+
+    <body>
+        <input type="checkbox" id="sidebar-toggle">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3 class="brand">
+                    <!-- <span class="logo"></span> -->
+                    <span>OHealth</span>
+                </h3>
+                <label for="sidebar-toggle" class="fa fa-bars"></label>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="/laboratory/dashboard">
+                            <span class="fa fa-home"></span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="">
+                            <span class="fa fa-user"></span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/laboratory/login/logout">
+                            <i class="fa fa-sign-out-alt"></i>
+                            <span>Sign out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <header>
+                <h5>LABORATORY PROFILE</h5>
+
+                <!-- <div class="search-wrapper">
+                <span class="fa fa-search"></span>
+                <input type="search" placeholder="Search" >
+            </div>
+            <div class="social-icons">
+                <span></span>
+                <span></span>
+            </div> -->
+            </header>
+            <main>
+                <section class="recent">
+                    <div class="card">
+                        <div>
+                            <form method="POST" action="/laboratory/editprofile">
+                                <div class="row">
+                                    <div class="col-12">
+                                        
+                                        <div class="form-group">
+                                            <div class="pix">
+                                                <img src='<%= user.avatar ? user.avatar : "/public/images/microscope.png" %>'
+                                                    alt="" class="profile-img" id="avatar">
+                                                <input type="text" id="avatarinput" name="avatardata"
+                                                    style="display: none;">
+                                                <label for="file" class="change-photo">Upload
+                                                    Logo</label>
+                                                <input type="file" id="file" onchange="document.getElementById('avatar').src = window.URL.createObjectURL(this.files[0]);
+                                                var reader = new FileReader();
+                                        reader.readAsDataURL(this.files[0]);
+                                        reader.onloadend = function() {
+                                            var base64data = reader.result; 
+                                            document.getElementById('avatarinput').value = (base64data);
+                                        }" accept="image/*" style="display:none;" />
+
+                                            </div>
+                                        </div>
+                                        <% if(error != ""){%>
+                                            <div class="errormsg">
+                                                <% for(var i=0; i < error.length; i++) {%>
+                                                <div>
+                                                    <%=error[i].msg%>
+                                                </div>
+                                                <% } %>
+                                            </div>
+                                            <%} else{%>
+                                            <% } %>
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Name of Laboratory</label>
+                                            <input type="text" value="<%=user.name ? user.name : '' %>"
+                                                class="form-control" name="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Email Address</label>
+                                            <input type="text" value="<%=user.email ? user.email : '' %>"
+                                                class="form-control" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Phone Number</label>
+                                            <input type="text" value="<%=user.phoneNumber ? user.phoneNumber : '' %>"
+                                                class="form-control" name="phoneNumber">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Country</label>
+                                            <input type="text" value="<%=user.country ? user.country : '' %>"
+                                                class="form-control" name="country">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">State</label>
+                                            <input type="text" value="<%=user.state ? user.state : '' %>"
+                                                class="form-control" name="state">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">City</label>
+                                            <input type="text" value="<%=user.city ? user.city : '' %>"
+                                                class="form-control" name="city">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Street</label>
+                                            <input type="text" value="<%=user.street ? user.street : '' %>"
+                                                class="form-control" name="street" maxlength="30">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Capacity of Test per day</label>
+                                            <input type="number"
+                                                value="<%=user.capacityPerDay ? user.capacityPerDay : '' %>"
+                                                class="form-control" name="capacityPerDay">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Price per Test</label>
+                                            <input type="number" value="<%=user.testCost ? user.testCost : '' %>"
+                                                class="form-control" name="testCost">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Bank Name</label>
+                                            <input type="text" value="<%=user.bankName ? user.bankName : '' %>" class="form-control" name="bankName" style="pointer-events: none;" id="bankname">
+                                                <select class="form-control" style="background-color: rgb(140, 255, 251);" onchange="changeBank(this.value)">
+                                                    <option>choose a/another bank</option>
+                                                    <option>access_bank</option>
+                                                    <option>citibank_nigeria</option>
+                                                    <option>diamond_bank</option>
+                                                    <option>ecobank_nigeria</option>
+                                                    <option>fidelity_bank</option>
+                                                    <option>first_bank_of_nigeria</option>
+                                                    <option>first_city_monument_bank</option>
+                                                    <option>guaranty_trust_bank</option>
+                                                    <option>heritage_bank</option>
+                                                    <option>keystone_bank</option>
+                                                    <option>mainstreet_bank</option>
+                                                    <option>skye_bank</option>
+                                                    <option>stanbic_ibtc_bank</option>
+                                                    <option>standard_chartered_bank</option>
+                                                    <option>sterling_bank</option>
+                                                    <option>union_bank_of_nigeria</option>
+                                                    <option>united_bank_for_africa</option>
+                                                    <option>unity_bank</option>
+                                                    <option>wema_bank</option>
+                                                    <option>zenith_bank</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Account Number</label>
+                                            <input type="text"
+                                                value="<%=user.accountNumber ? user.accountNumber : '' %>"
+                                                class="form-control" name="accountNumber">
+                                         </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Account Name</label>
+                                            <input type="text" value="<%=user.accountName ? user.accountName : '' %>"
+                                                class="form-control" name="accountName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-warning text-center" id="edit" >Allow
+                                    Update</button> || <button type="submit" class="btn text-center" id="update">Save
+                                    Changes</button>
+
+                            </form>
+                            <div class="col-12">
+
+                            </div>
+
+                            <script>
+                                function changeBank(d){
+                                    document.getElementById('bankname').value = d
+                                }
+                                window.addEventListener('keydown', function (e) { if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) { if (e.target.nodeName == 'INPUT' && e.target.type == 'text') { e.preventDefault(); return false; } } }, true);
+                                document.getElementById('edit').addEventListener('click', editprofile);
+                                function editprofile(e) {
+                                    console.log(e);
+                                    document.getElementById('update').style.pointerEvents = "all"; 
+                                    e.preventDefault()
+                                        return false                                   
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </body>
+
+</html>

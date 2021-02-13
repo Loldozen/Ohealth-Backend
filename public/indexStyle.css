@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  z-index: 1;
+  background-color: rgb(80, 80, 80);
+  /* background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+}
+.logo {
+  width: 20%;
+  margin-top: 13%;
+}
+.index {
+  background-color: rgb(43, 72, 72);
+  display: flex;
+  margin: 5% auto;
+  max-width: 50%;
+  box-shadow: 0 5px 5px 0;
+}
+.short {
+  background-color: #fff;
+  text-align: center;
+  padding:3px;
+  /* padding-top: 11%; */
+  /* padding: 3rem 2rem; */
+}
+
+.about{
+  padding: 1rem;
+  /* margin: 0 1rem; */
+  text-align: center;
+}
+.name h4{
+  text-align: center;
+  margin: 1rem auto;
+}
+.buttons {
+  
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../images/covidtest.jpg);
+  background-position: center center;
+  background-size: cover;
+  padding: 20% 10%;
+  /* margin-left: 10%; */
+}
+.serviceBtn {
+  background-color: rgb(48, 93, 93);
+  border: 1px solid;
+  border-radius: 50px;
+  padding: 10px 50px;
+  color: #fff;
+  text-align: center;
+  margin: 30px 0;
+  display: block;
+  width: 100%;
+}
+@media only screen and (max-width: 1200px) {
+  .buttons {
+    padding: 30% 10%;
+  }
+}
+@media only screen and (max-width: 945px) {
+  .index {
+    max-width: 70%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .index {
+    width: 80%;
+    position: absolute;
+    display:inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 5px 0;
+  }
+  .serviceBtn {
+    width: 100%;
+    display: block;
+  }
+}
+@media only screen and (max-width: 599px) {
+  .index {
+    max-width: 100%;
+    position: absolute;
+    display:inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 5px 0;
+  }
+  .buttons{
+    width: 100%;
+
+  }
+  .serviceBtn {
+    width: 100%;
+    display: block;
+  }
+}
+@media only screen and (max-width: 482px) {
+  .index {
+    max-width: 100%;
+    position: absolute;
+    display:inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 5px 0;
+  }
+}
+  .serviceBtn {
+    width: 100%;
+    display: block;
+  }
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/public/css/bootstrap-grid.css">
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/css/loginstyle.css">
+        <link rel=icon href="/public/images/favicon.png" sizes="16x16" type="image/png">
+
+        <title>Laboratory Login</title>
+    </head>
+
+    <body class="hospital-body">
+        <div class="hospital-signup">
+            <form method="POST" action="/laboratory/login">
+                <div class="row">
+                    <div class="form-container col-lg-12">
+                        <img src="/public/images/logo8.png" alt="ohealth-logo" class="ohealthLogo" />
+                    </div>
+                    <div class="form-container col-lg-12">
+                        <h3>Login to your Dashboard</h3>
+                        <br>
+                        <% if(error != ""){%>
+                        <div class="errormsg">
+                            <% for(var i=0; i < error.length; i++) {%>
+                            <div>
+                                <%=error[i].msg%>
+                            </div>
+                            <% } %>
+                        </div>
+                        <%} else{%>
+                        <% } %>
+                        <% if(success != ""){%>
+                            <div class="errormsg" style="background-color:rgb(169, 240, 169) !important">
+                                <% for(var i=0; i < success.length; i++) {%>
+                                <div>
+                                    <%=success[i].msg%>
+                                </div>
+                                <% } %>
+                            </div>
+                            <%} else{%>
+                            <% } %>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="email" name="email" id="" placeholder="Email Address*" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="password" name="password" id="" placeholder="Password*" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 have-account">
+                        <p>Do not have an account? <span> <a href="/laboratory/register">Register</a> </span></p>
+                    </div>
+                    <div class="col-lg-12 have-account">
+                        <a href="/laboratory/recover">Forgot password? </a>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="hospital-btn">Login</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </body>
+
+</html>

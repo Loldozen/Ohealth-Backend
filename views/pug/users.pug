@@ -1,0 +1,142 @@
+include includes/nav.pug
+.content-wrapper
+	.container-fluid
+		// Breadcrumbs
+		ol.breadcrumb
+			li.breadcrumb-item
+				a(href='/admin/dashboard') Dashboard
+			li.breadcrumb-item.active Users List
+
+		// Doctors
+		.card.mb-3
+			.card-header
+				h3
+					i.fa.fa-table
+					|   Users List
+			.card-body
+				h3 Total Users: 
+					span.text-success=(users?users.length:0)
+				.table-responsive
+					table#dataTable.table.table-bordered.table-dark.py-5.mb-5(width='100%', cellspacing='0')
+						thead
+							tr
+								th #
+								th Name
+								th Username
+								th Email
+								th Phone Number
+								th Gender
+								th Verified?
+								th Status
+								th Action
+								if (adminPriviledge && adminPriviledge >1)
+								
+									th Delete
+						tbody
+							if users
+							- var num = 1 
+								each user in users
+									tr
+										td=num
+										td=user.name
+										td=user.username
+										td=user.email
+										td=user.phoneNumber
+										td=user.gender
+										if user.verified
+											td.text-success='Active'
+										else
+											td.text-danger='Banned'
+										if user.online
+											td.text-success='Online'
+										else
+											td.text-warning='Offline'
+										td
+											a.btn.btn-primary(href=`/admin/user/${user._id}`)="View"
+										if (adminPriviledge && adminPriviledge >1)	
+											td
+												a.btn.btn-danger(onclick=`gotoDelete('/admin/user/delete/${user._id}')`)="Delete"
+									- num++
+
+
+			// <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+			// /.container-fluid
+			// /.content-wrapper
+			footer.sticky-footer
+				.container
+					.text-center
+						small Copyright © oHealth 2020
+			// Scroll to Top Button
+			a.scroll-to-top.rounded(href='#page-top')
+				i.fa.fa-angle-up
+			// Logout Modal
+			#logOut.modal.fade(tabindex='-1', role='dialog', aria-labelledby='logOutLabel', aria-hidden='true')
+				.modal-dialog(role='document')
+					.modal-content
+						.modal-header
+							h5#logOutLabel.modal-title Ready to Leave?
+							button.close(type='button', data-dismiss='modal', aria-label='Close')
+								span(aria-hidden='true') ×
+						.modal-body Select "Logout" below if you are ready to end your current session.
+						.modal-footer
+							button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+							a.btn.btn-primary(href='/admin/login/logout') Logout
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
+script(src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap4.js')
+script.
+	function gotoDelete(l) {
+		var r = confirm("Are you sure?");
+		if (r == true) {
+			window.location = l
+		}
+	}
+	$(document).ready(function() {
+	$('#dataTable').DataTable();
+	});
+	(function($) {
+	"use strict"; // Start of use strict
+	// Configure tooltips for collapsed side navigation
+	$('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+	template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+	})
+	// Toggle the side navigation
+	$("#sidenavToggler").click(function(e) {
+	e.preventDefault();
+	$("body").toggleClass("sidenav-toggled");
+	$(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+	$(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+	});
+	// Force the toggled class to be removed when a collapsible nav link is clicked
+	$(".navbar-sidenav .nav-link-collapse").click(function(e) {
+	e.preventDefault();
+	$("body").removeClass("sidenav-toggled");
+	});
+	// Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+	$('body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse').on('mousewheel DOMMouseScroll', function(e) {
+	var e0 = e.originalEvent,
+	delta = e0.wheelDelta || -e0.detail;
+	this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+	e.preventDefault();
+	});
+	// Scroll to top button appear
+	$(document).scroll(function() {
+	var scrollDistance = $(this).scrollTop();
+	if (scrollDistance > 100) {
+	$('.scroll-to-top').fadeIn();
+	} else {
+	$('.scroll-to-top').fadeOut();
+	}
+	});
+	// Configure tooltips globally
+	$('[data-toggle="tooltip"]').tooltip()
+	// Smooth scrolling using jQuery easing
+	$(document).on('click', 'a.scroll-to-top', function(event) {
+	var $anchor = $(this);
+	$('html, body').stop().animate({
+	scrollTop: ($($anchor.attr('href')).offset().top)
+	}, 1000, 'easeInOutExpo');
+	event.preventDefault();
+	});
+	})(jQuery); // End of use strict

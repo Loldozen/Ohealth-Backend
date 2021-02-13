@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+.sidebar {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background-color: rgb(43, 97, 97);
+  color: #fff;
+  overflow-y: auto;
+  transition: width 500ms;
+}
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 10px;
+}
+.sidebar-menu {
+  padding: 1rem;
+}
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar li a span:first-child:hover {
+}
+
+.sidebar a span:last-child {
+  padding-left: 0.6rem;
+}
+.sidebar a:hover {
+  background-color: #fff;
+  color: #000;
+  border-radius: 3px;
+  padding: 8px 15px;
+}
+.sidebar-menu li a {
+  display: block;
+  align-items: center;
+  color: #fff;
+  padding: 8px 15px;
+  text-decoration: none;
+}
+.sidebar-menu li.active a {
+  background-color: #fff;
+  color: #000;
+  border-radius: 3px;
+}
+
+#sidebar-toggle:checked ~ .sidebar {
+  width: 60px;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar li span:last-child {
+  display: none;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li {
+  display: flex;
+  justify-content: center;
+}
+#sidebar-toggle:checked ~ .main-content {
+  margin-left: 60px;
+}
+#sidebar-toggle:checked ~ .main-content header {
+  left: 60px;
+}
+
+.main-content {
+  position: relative;
+  margin-left: 240px;
+  transition: margin-left 500ms;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 240px;
+  z-index: 100;
+  display: flex;
+  width: 100%;
+  background: #fff;
+  padding: 0rem 1rem;
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+  transition: left 500ms;
+}
+main {
+  margin-top: 35px;
+  min-height: 90vh;
+  width: 100%;
+  padding: 1rem;
+  background: #f8f9fa;
+}
+.dash-cards {
+  display: grid;
+  grid-template-columns: 31% 31% 31%;
+  grid-column-gap: 3.4%;
+}
+/* .search-wrapper {
+  display: flex;
+}
+.search-wrapper input {
+  border: 0;
+  height: 30px;
+  padding: 1rem;
+  outline: 0;
+} */
+.card-single {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.card-body {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+.card-body h5 {
+  color: #ccc;
+}
+.card-footer {
+  padding: 0.2rem 1rem;
+  background: #f9fafc;
+}
+.card-footer a {
+  color: rgb(43, 97, 97);
+}
+.recent {
+  margin-bottom: 3rem;
+}
+.space-up {
+  margin-top: 3rem;
+}
+.activity-grid {
+  display: grid;
+  grid-template-columns: 74% 24%;
+  grid-column-gap: 1.6%;
+}
+.activity-card,
+.summary-card,
+.bday-card {
+  background: #fff;
+  border-radius: 7px;
+}
+.activity-card h3 {
+  color: #ccc;
+  margin: 1rem;
+}
+.table-responsive {
+  overflow-x: auto;
+}
+.activity-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.activity-card thead {
+  background: #efefef;
+  text-align: left;
+}
+th,
+td {
+  font-size: 0.9rem;
+  padding: 1rem 1rem;
+}
+tbody tr:nth-child(even) {
+  background: #f9fafc;
+}
+.summary-card,
+.bday-card {
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.summary-single {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+.bday-card {
+  padding: 1rem;
+}
+.summary-single h5 {
+  color: rgb(43, 97, 97);
+  font-size: 1rem;
+  margin-bottom: 0rem !important;
+}
+.summary-single small {
+  font-weight: 700;
+  color: #ccc;
+}
+.bday-flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+.bday-img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: 3px solid rgb(43, 97, 97);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 0.7rem;
+  background-image: url(images/consult.jpg);
+}
+.text-center {
+  text-align: center;
+}
+.text-center button {
+  background: rgb(43, 97, 97);
+  color: #fff;
+  border: 1px solid rgb(43, 97, 97);
+  border-radius: 4px;
+  padding: 0.4rem 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar .sidebar-header h3 span,
+  .sidebar li span:last-child {
+    display: none;
+  }
+
+  .sidebar .sidebar-header,
+  .sidebar li {
+    display: flex;
+    justify-content: center;
+  }
+  .main-content {
+    margin-left: 60px;
+  }
+  .main-content header {
+    left: 60px;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .dash-cards {
+    grid-template-columns: repeat(50% 50%);
+  }
+  .card-single {
+    margin-bottom: 1rem;
+  }
+  .activity-grid {
+    display: block;
+  }
+  .summary {
+    margin-top: 1.5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .dash-cards {
+    grid-template-columns: 100%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .main {
+    padding-left: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+/* find a doctor style */
+
+.doctor-list {
+  background-color: #fff;
+}
+.search {
+  width: 50%;
+  border-color: rgb(43, 97, 97);
+  border-radius: 10px;
+  height: 50px;
+  padding: 10px 20px;
+}
+.doctor-btn {
+  border-radius: 50px;
+  height: 50px;
+  padding: 10px 20px;
+  margin-left: 20px;
+  background-color: rgb(43, 97, 97);
+  color: #fff;
+}
+.book-btn {
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+/* Appointment styles */
+.time {
+  color: rgb(69, 190, 190);
+}
+
+/* my profile styles */
+.pix {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 3px solid rgb(67, 172, 172);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 1.5rem;
+  background-image: url(images/consult.jpg);
+}
+.change-photo {
+  border: 1px solid;
+  width: 150px;
+  border-radius: 50px;
+  background-color: rgb(67, 172, 172);
+  padding: 0.4rem;
+  color: #fff;
+  text-align: center;
+}
+.input {
+  border: 1px solid #ccc;
+  font-size: 15px;
+  min-height: 45px;
+  padding: 6px 15px;
+}
+.card {
+  padding: 1rem;
+}
+.btn {
+  background-color: rgb(67, 172, 172);
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: #fff;
+  text-align: center;
+  min-width: 100px;
+  align-content: center;
+  margin: 20px 0;
+}

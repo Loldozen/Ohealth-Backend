@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/public/css/bootstrap-grid.css">
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/css/loginstyle.css">
+        <link rel=icon href="/public/images/favicon.png" sizes="16x16" type="image/png">
+
+
+        <title>Reset Password</title>
+    </head>
+
+    <body class="hospital-body">
+        <div class="hospital-signup">
+            <form method="POST" action="/laboratory/recover/confirm">
+                <div class="row">
+                    <div class="form-container col-lg-12">
+                        <img src="/public/images/logo8.png" alt="ohealth-logo" class="ohealthLogo" />
+                    </div>
+                    <div class="form-container col-lg-12">
+                        <h3>Reset your Password</h3>
+                    </div>
+                    <% if(error != ""){%>
+                        <div class="errormsg">
+                            <% for(var i=0; i < error.length; i++) {%>
+                                <div>
+                                    <%=error[i].msg%>
+                                </div>
+                                <% } %>
+                        </div>
+                        <%} else{%>
+                            <% } %>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="text" name="email" id="" placeholder="Email*" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="text" name="recoveryCode" id="" placeholder="Enter Recovery Code*" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="password" name="password" id="" placeholder="Password*" class="form-control"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="password" name="cpassword" id="" placeholder="Confirm Password*"
+                                class="form-control" required>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12 have-account">
+                        <p>Don't have an account? <span> <a href="laboratory-signup.html">Register</a> </span></p>
+                    </div> -->
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="hospital-btn">Reset</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </body>
+
+</html>
