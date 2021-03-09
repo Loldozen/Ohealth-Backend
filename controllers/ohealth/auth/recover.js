@@ -99,7 +99,7 @@ async function sendAnEmail(email, code, name) {
 
 	// send mail with defined transport object
 	let info = await transporter.sendMail({
-		from: '"Ohealth 👻" <support@ohealthng.com>', // sender address
+		from: '"Ohealth Password Recovery" <support@ohealthng.com>', // sender address
 		to: email, // list of receivers
 		subject: "Password Recovery Request ✔", // Subject line
 		// text: `Hello ${name}`, // plain text body

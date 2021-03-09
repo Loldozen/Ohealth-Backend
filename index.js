@@ -177,79 +177,9 @@ app.use('/laboratory/booklab', require('./controllers/laboratory/user/booklab'))
 app.use('/laboratory/testStatus', require('./controllers/laboratory/user/testStatus'))
 app.use('/laboratory/addTransaction', require('./controllers/laboratory/owner/addTransaction'))
 
-
-
-
-
-//Handle Error
-// app.use((req, res, next) => {
-//   const err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
-
-// app.use((err, req, res, next) => {
-//   res.locals.error = err;
-//   const status = err.status || 500;
-//   res.status(status);
-//   res.render('error');
-// });
 app.use('*', express.Router().all('/', function(request, response, next) {
     return response.render('index', { pagetitle: '404 Error' })
 }))
-
-// app.get('/', function(request, response) {
-//     var error = request.session.error;
-//     request.session.error = ""
-//     return response.render('index', { pagetitle: 'Homepage', error: "", user: request.session.user ?request. session.user : "" })
-// })
-
-// app.get('/login', function(request, response) {
-//     if (!request.session.user) {
-//         var error = request.session.error;
-//         request.session.error = ""
-//         return response.render('sign-in', { pagetitle: 'Sign In Page', error: "", error: error ? error : "" })
-//     }
-
-//     return response.redirect('/labdashboard')
-
-// })
-// app.get('/signup', function(request, response) {
-//     if (!request.session.user) {
-//         var error = request.session.error;
-//         request.session.error = ""
-//         return response.render('sign-up', { pagetitle: 'Sign Up Page', error: "", error: error ? error : "" })
-//     }
-//     return response.redirect('/labdashboard')
-// })
-
-// app.get('/forgotpassword', function(request, response) {
-//     if (!request.session.user) {
-//         var error = request.session.error;
-//         request.session.error = ""
-//         return response.render('forgotpassword', { pagetitle: 'Forgot Password', error: "", error: error ? error : "" })
-//     }
-//     return response.redirect('/dashboard')
-// })
-
-// app.get('/reset', function(request, response) {
-//     if (!request.session.user) {
-//         var error = request.session.error;
-//         request.session.error = ""
-//         return response.render('reset', { pagetitle: 'Password Reset', error: "", error: error ? error : "" })
-//     }
-//     return response.redirect('/labdashboard')
-// })
-
-
-// app.get('/labprofile', function(request, response) {
-//     if (request.session.user) {
-//         return response.render('dashboard/labprofile', { pagetitle: 'Dashboard', error: "", user: request.session.user ? request.session.user : "" })
-//     }
-//     return response.redirect('/login')
-
-// })
-
 
 
 var server = app.listen(process.env.PORT || 7000, function() {
