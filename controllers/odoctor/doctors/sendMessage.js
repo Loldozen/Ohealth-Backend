@@ -6,7 +6,7 @@ const fs = require('fs')
 
 const User = require('../../../models/ohealth/User')
 const Doctor = require('../../../models/odoctor/Doctor')
-// const Appointment = require('../../../models/both/Appointment')
+const Appointment = require('../../../models/both/Appointment')
 const Chat = require('../../../models/both/Chat')
 
 // fireabse admin
@@ -19,7 +19,6 @@ cloudinary.config({
 	api_key: '838578422156265',
 	api_secret: 'eFWW8fjOiFPSDZPyetybhzd9dv0'
 });
-
 
 router.post('/', [
 	body('mdcnNumber').notEmpty().withMessage('MDCN number is required').bail().isString().withMessage('MDCN number is not valid').bail().isLength({ min: 5, max: 30 }).withMessage('MDCN number can only be between 5 and 30 chars'),
@@ -73,7 +72,6 @@ router.post('/', [
 						//Invalid credential
 						return response.status(400).json({ error: "Something went wrong, please contact the customer care" })
 					}
-
 
 					//////////////
 					const msg = {

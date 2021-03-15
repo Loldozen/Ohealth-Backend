@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 // app.set('view engine', 'pug');
 // mongoose.connect('mongodb://localhost/ohealth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
-mongoose.connect('mongodb+srv://mnuser:OnlineHealth-Pass48776@ohealth.dynnz.mongodb.net/ohealth?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+
 
 
 mongoose.Promise = global.Promise
